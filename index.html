@@ -1,126 +1,103 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"><!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-
-  <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Dieta desde 0</title>
-
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: white;
+    }
 
+    .aurora-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1; /* Make sure it stays behind the content */
+    }
+
+    .aurora {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(120deg, rgba(255,0,150,0.3), rgba(0,204,255,0.3));
+      filter: blur(100px);
+      transform: translate(-50%, -50%);
+      animation: aurora 1.9s infinite alternate;
+    }
+
+    @keyframes aurora {
+      0% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.2); }
+      100% { transform: translate(-50%, -50%) scale(1); }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="aurora-container">
+    <div class="aurora"></div>
+  </div>
 
   <div id="container">
-
     <div id="form-container">
-
       <h1>Calculadora de Nutrición</h1>
-
       <form id="nutrition-form">
-
         <label for="weight">Peso (kg):</label>
-
         <input type="number" id="weight" name="weight" required>
-
         
-
         <label for="height">Altura (cm):</label>
-
         <input type="number" id="height" name="height" required>
-
         
-
         <label for="age">Edad (años):</label>
-
         <input type="number" id="age" name="age" required>
-
         
-
         <label for="gender">Género:</label>
-
         <select id="gender" name="gender" required>
-
           <option value="">Seleccionar</option>
-
           <option value="male">Masculino</option>
-
           <option value="female">Femenino</option>
-
         </select>
-
         
-
         <label for="formula">Seleccionar Fórmula:</label>
-
         <select id="formula" name="formula" required>
-
           <option value="">Seleccionar</option>
-
           <option value="harris">Harris-Benedict</option>
-
           <option value="mifflin">Mifflin-St Jeor</option>
-
           <option value="cunningham">Cunningham</option>
-
         </select>
-
         
-
         <label for="activity-level">Nivel de Actividad:</label>
-
         <select id="activity-level" name="activity-level" required>
-
           <option value="">Seleccionar</option>
-
           <option value="1.2">Sedentario (Poco o ningún ejercicio)</option>
-
           <option value="1.375">Ligeramente activo (Ejercicio ligero/deportes 1-3 días/semana)</option>
-
           <option value="1.55">Moderadamente activo (Ejercicio moderado/deportes 3-5 días/semana)</option>
-
           <option value="1.725">Muy activo (Ejercicio intenso/deportes 6-7 días/semana)</option>
-
           <option value="1.9">Extra activo (Ejercicio muy intenso/deportes y trabajo físico o 2x entrenamiento)</option>
-
         </select>
-
         
-
         <button type="submit" id="calculate">Calcular</button>
-
       </form>
-
     </div>
-
-
 
     <div id="result-container">
-
       <h2>Resultados</h2>
-
       <div id="bmr-container"></div>
-
       <div id="tdee-container"></div>
-
     </div>
-
   </div>
 
   <script src="script.js"></script>
-
 </body>
-</html>
+  </html>

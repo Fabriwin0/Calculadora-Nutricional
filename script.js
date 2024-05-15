@@ -1,4 +1,3 @@
-// Esperar a que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', function() {
     // Retrieve form elements
     const weightInput = document.getElementById('weight');
@@ -9,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const activityLevelSelect = document.getElementById('activity-level');
     const calculateButton = document.getElementById('calculate');
     const bmrContainer = document.getElementById('bmr-container');
+    const cunninghamFatInput = document.getElementById('cunningham-fat');
 
     // Verificar si el botón de calcular existe
     if (calculateButton) {
@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const gender = genderSelect.value;
         const formula = formulaSelect.value;
         const activityLevel = parseFloat(activityLevelSelect.value);
+        const fatPercentage = parseFloat(cunninghamFatInput.value);
 
         // Validate input
         if (isNaN(weight) || weight <= 0 || isNaN(height) || height <= 0 || isNaN(age) || age <= 0 || gender === "" || formula === "" || isNaN(activityLevel)) {
@@ -52,9 +53,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
             }
         } else if (formula === "cunningham") {
-            // In this case, we could ask for additional input, but for simplicity, I'll leave it as is
-            bmrContainer.textContent = "Por favor ingrese un porcentaje de grasa corporal válido para la fórmula de Cunningham.";
-            return;
+            // Handle Cunningham formula
+            // Show input for body fat percentage
+            cunninghamFatInput.style.display = 'inline-block';
+
+            // Validate input for body fat percentage
+            if (isNaN(fatPercentage) || fatPercentage <= 0) {
+                bmrContainer.textContent = "Por favor ingrese un porcentaje de grasa corporal válido.";
+                return;
+            }
+
+            // Calculate BMR using Cunningham formula
+            if (gender === "male") {
+                bmr = 500 + (22 * weight * (1 - (fatPercentage / 100)));
+            } else {
+                bmr = 500 + (22 * weight * (1 - (fatPercentage / 100)));
+            }
         }
 
         // Calculate TDEE

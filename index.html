@@ -48,6 +48,10 @@
       50% { transform: translate(-50%, -50%) scale(1.2); }
       100% { transform: translate(-50%, -50%) scale(1); }
     }
+
+    #fat-percentage-container {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -83,9 +87,10 @@
           <option value="cunningham">Cunningham</option>
         </select>
         
-        <!-- Input for body fat percentage (Cunningham formula) -->
-        <label for="cunningham-fat">Porcentaje de Grasa Corporal:</label>
-        <input type="number" id="cunningham-fat" name="cunningham-fat" placeholder="Ingrese el % de grasa corporal">
+        <div id="fat-percentage-container">
+          <label for="fat-percentage">Porcentaje de Grasa Corporal (%):</label>
+          <input type="number" id="fat-percentage" name="fat-percentage" step="0.1">
+        </div>
         
         <label for="activity-level">Nivel de Actividad:</label>
         <select id="activity-level" name="activity-level" required>
@@ -109,4 +114,4 @@
 
   <script src="script.js"></script>
 </body>
-  </html>
+          </html>

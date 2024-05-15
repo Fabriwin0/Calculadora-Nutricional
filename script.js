@@ -6,9 +6,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const genderSelect = document.getElementById('gender');
     const formulaSelect = document.getElementById('formula');
     const activityLevelSelect = document.getElementById('activity-level');
+    const fatPercentageContainer = document.getElementById('fat-percentage-container');
+    const fatPercentageInput = document.getElementById('fat-percentage');
     const calculateButton = document.getElementById('calculate');
     const bmrContainer = document.getElementById('bmr-container');
-    const cunninghamFatInput = document.getElementById('cunningham-fat');
 
     // Verificar si el botón de calcular existe
     if (calculateButton) {
@@ -17,6 +18,16 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error("No se encontró el botón 'calculate'.");
     }
+
+    // Mostrar u ocultar el campo de porcentaje de grasa corporal
+    formulaSelect.addEventListener('change', function() {
+        if (formulaSelect.value === 'cunningham') {
+            fatPercentageContainer.style.display = 'block';
+        } else {
+            fatPercentageContainer.style.display = 'none';
+            fatPercentageInput.value = ''; // Limpiar el valor del campo
+        }
+    });
 
     // Función para calcular Total Daily Energy Expenditure (TDEE)
     function calculateTDEE(event) {
@@ -29,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const gender = genderSelect.value;
         const formula = formulaSelect.value;
         const activityLevel = parseFloat(activityLevelSelect.value);
-        const fatPercentage = parseFloat(cunninghamFatInput.value);
+        const fatPercentage = parseFloat(fatPercentageInput.value);
 
         // Validate input
         if (isNaN(weight) || weight <= 0 || isNaN(height) || height <= 0 || isNaN(age) || age <= 0 || gender === "" || formula === "" || isNaN(activityLevel)) {
@@ -53,22 +64,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
             }
         } else if (formula === "cunningham") {
-            // Handle Cunningham formula
-            // Show input for body fat percentage
-            cunninghamFatInput.style.display = 'inline-block';
-
-            // Validate input for body fat percentage
-            if (isNaN(fatPercentage) || fatPercentage <= 0) {
-                bmrContainer.textContent = "Por favor ingrese un porcentaje de grasa corporal válido.";
+            if (isNaN(fatPercentage) || fatPercentage <= 0 || fatPercentage >= 100) {
+                bmrContainer.textContent = "Por favor ingrese un porcentaje de grasa corporal válido para la fórmula de Cunningham.";
                 return;
             }
-
-            // Calculate BMR using Cunningham formula
-            if (gender === "male") {
-                bmr = 500 + (22 * weight * (1 - (fatPercentage / 100)));
-            } else {
-                bmr = 500 + (22 * weight * (1 - (fatPercentage / 100)));
-            }
+            const lbm = weight * (1 - (fatPercentage / 100));
+            bmr = 500 + (22 * lbm);
         }
 
         // Calculate TDEE

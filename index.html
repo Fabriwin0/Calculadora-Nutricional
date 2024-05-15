@@ -13,6 +13,14 @@
       overflow: hidden;
       background: white;
     }
+    
+    html, body, #container {
+      height: 100%; /* Asegura que el contenedor ocupe toda la altura del viewport */
+    }
+
+    #container {
+      overflow-y: auto; /* Permite el desplazamiento vertical si el contenido excede la altura del viewport */
+    }
 
     .aurora-container {
       position: absolute;
@@ -100,4 +108,5 @@
 
   <script src="script.js"></script>
 </body>
-  </html>
+
+          </html>

@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
+  background-color: rgba(245, 245, 245, 0.5); /* Fondo semi-transparente */
   color: #333;
 }
 
@@ -50,8 +50,8 @@ button:hover {
 }
 
 #result-container {
-  margin: 20px auto; /* Centro el resultado */
-  max-width: 400px; /* Ancho máximo del resultado */
+  margin: 20px auto;
+  max-width: 400px;
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
@@ -67,21 +67,9 @@ button:hover {
 }
 
 #social-media {
-  position: fixed; /* Hace que el enlace sea flotante */
-  bottom: 20px; /* Lo colocamos en la parte inferior */
-  right: 20px; /* Lo colocamos en el lado derecho */
-  background-color: #fff;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: transparent;
   padding: 10px 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#social-media a {
-  text-decoration: none;
-  color: #E1306C; /* Color de Instagram */
-  font-weight: bold;
-}
-
-#social-media a:hover {
-  color: #C13584; /* Color al pasar el ratón */
-  }
+  border-radius:

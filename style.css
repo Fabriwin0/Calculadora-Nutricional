@@ -1,5 +1,7 @@
 /* Estilos generales */
 body {
+  margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
   background-color: #f5f5f5;
   color: #333;
@@ -48,24 +50,38 @@ button:hover {
 }
 
 #result-container {
-  margin-top: 20px;
+  margin: 20px auto; /* Centro el resultado */
+  max-width: 400px; /* Ancho máximo del resultado */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#result-container h2 {
+  text-align: center;
 }
 
 #bmr-container {
   font-size: 1.2rem;
 }
+
 #social-media {
-  text-align: center;
-  margin-top: 20px;
+  position: fixed; /* Hace que el enlace sea flotante */
+  bottom: 20px; /* Lo colocamos en la parte inferior */
+  right: 20px; /* Lo colocamos en el lado derecho */
+  background-color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #social-media a {
   text-decoration: none;
   color: #E1306C; /* Color de Instagram */
-  font-size: 16px;
   font-weight: bold;
 }
 
 #social-media a:hover {
   color: #C13584; /* Color al pasar el ratón */
-}
+  }
